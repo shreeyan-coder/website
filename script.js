@@ -1,59 +1,76 @@
-// Advanced JavaScript for smooth animations, image lazy loading, scroll animations, and interactive gallery effects
+// script.js
 
-// Smooth animations
-const smoothScroll = (target) => {
-  const element = document.querySelector(target);
-  element.scrollIntoView({
-    behavior: 'smooth'
-  });
-};
+// Smooth scrolling
+const scrollLinks = document.querySelectorAll('a.scroll-link');
 
-// Image lazy loading
-const lazyLoadImages = () => {
-  const images = document.querySelectorAll('img[data-src]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.onload = () => img.classList.add('loaded');
-        observer.unobserve(img);
-      }
+scrollLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        target.scrollIntoView({
+            behavior: 'smooth'
+        });
     });
-  });
-
-  images.forEach(image => observer.observe(image));
-};
-
-// Scroll animations
-const revealOnScroll = () => {
-  const elements = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  });
-
-  elements.forEach(element => observer.observe(element));
-};
-
-// Interactive gallery effects
-const initGallery = () => {
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      item.classList.toggle('active'); // Toggle active class for effects
-    });
-  });
-};
-
-// Modern interactions
-document.addEventListener('DOMContentLoaded', () => {
-  lazyLoadImages();
-  revealOnScroll();
-  initGallery();
 });
 
-// You can integrate this functionality into your website by calling these functions where necessary.
+// Gallery lightbox
+const galleryItems = document.querySelectorAll('.gallery-item');
+const lightbox = document.querySelector('.lightbox');
+const lightboxImg = document.querySelector('.lightbox-img');
+
+galleryItems.forEach(item => {
+    item.addEventListener('click', function() {
+        const imgSrc = this.querySelector('img').src;
+        lightboxImg.src = imgSrc;
+        lightbox.classList.add('active');
+    });
+});
+
+lightbox.addEventListener('click', function() {
+    lightbox.classList.remove('active');
+});
+
+// Animated reveals on scroll
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealOnScroll = () => {
+    revealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const viewportHeight = window.innerHeight;
+        if (elementTop < viewportHeight - 150) {
+            element.classList.add('active');
+        }
+    });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+
+// Button interactions
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => {
+    button.addEventListener('mouseenter', () => {
+        button.classList.add('hover');
+    });
+    button.addEventListener('mouseleave', () => {
+        button.classList.remove('hover');
+    });
+});
+
+// Mobile menu toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+
+// Form handling
+const form = document.querySelector('form');
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    console.log('Form submitted:', Object.fromEntries(formData.entries()));
+});
