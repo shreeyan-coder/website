@@ -3,38 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <title>Modern Website</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        header {
+            background: url('path/to/hero-image.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+        .cta-button {
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #e05340;
+        }
+        main {
+            padding: 20px;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .gallery img {
+            width: 30%;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+        /* Smooth scrolling setup */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Drawing Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <h1>Welcome to Our Modern Website</h1>
+        <button class="cta-button">Get Started</button>
     </header>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi! I'm a passionate artist who loves to bring ideas to life through drawings. My portfolio showcases my journey and progress as an artist.</p>
-    </section>
-    <section id="gallery">
-        <h2>Gallery</h2>
-        <div class="drawings">
-            <img src="drawing1.jpg" alt="Drawing 1">
-            <img src="drawing2.jpg" alt="Drawing 2">
-            <img src="drawing3.jpg" alt="Drawing 3">
-        </div>
-    </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>If you would like to get in touch, feel free to <a href="mailto:example@example.com">email me</a>.</p>
-    </section>
+    <main>
+        <section class="gallery">
+            <img src="path/to/image1.jpg" alt="Gallery Image 1">
+            <img src="path/to/image2.jpg" alt="Gallery Image 2">
+            <img src="path/to/image3.jpg" alt="Gallery Image 3">
+        </section>
+    </main>
     <footer>
-        <p>&copy; 2026 My Portfolio</p>
+        <p>&copy; 2026 Modern Website. All rights reserved.</p>
     </footer>
 </body>
 </html>
